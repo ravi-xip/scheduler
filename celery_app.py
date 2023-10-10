@@ -2,7 +2,7 @@ from celery import Celery
 
 app = Celery('scheduler',
              broker='redis://redis:6379/0',
-             backend='redis://redis:6379/1')
+             backend='redis://redis:6379/1', include=['tasks'])
 
 # Optional configuration, see the application user guide.
 app.conf.update(
