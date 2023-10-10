@@ -10,7 +10,9 @@ Then, in a separate terminal, run the following command:
 
 ```bash
 curl localhost:8080/
-curl localhost:8080/add
+curl localhost:8080/add/1/2
+curl localhost:8080/add/async/1/2
+curl localhost:8080/add/parallel/1/2/10
 ```
 
 You should see a task being executed in the logs.
