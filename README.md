@@ -15,4 +15,4 @@ curl localhost:8080/add/async/1/2
 curl localhost:8080/add/parallel/1/2/10
 ```
 
-You should see a task being executed in the logs.
+You should get a health Check, a task that sums two numbers, a task that sums numbers in async, and a task that runs multiple versions of the sum in parallel.
