@@ -32,14 +32,21 @@ def start_flask_server():
     def ping():
         return "Scheduler\n", 200
 
-    @app.route("/add", methods=["GET"])
-    def add():
+    @app.route("/add/<num_1>/<num_2>", methods=["GET"])
+    def add(num_1, num_2):
         # Schedule an add task
-        add_t.delay(2, 2)
-        return "Scheduled add task\n", 200
+
+        # Wait for the task to complete and return the result
+        # Convert the input to integers
+        num_1 = int(num_1)
+        num_2 = int(num_2)
+
+        add_result = add_t.delay(num_1, num_2)
+        add_result.wait()
+        return f"Result: {add_result.get()}\n", 200
 
     # Start the server
-    app.run(host="0.0.0.0", port=8080, debug=False)
+    app.run(host="0.0.0.0", port=8080, debug=True)
 
 
 if __name__ == "__main__":
