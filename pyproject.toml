@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "scheduler"
+version = "0.1.0"
+description = ""
+authors = ["ravi-xip <ravi@xip.co>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+flask = "^3.0.0"
+flask-cors = "^4.0.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
