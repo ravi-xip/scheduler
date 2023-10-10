@@ -44,7 +44,21 @@ services:
       context: .
     image: ${DOCKER_HUB_REPO}/scheduler-be:${DOCKER_TAG}
     container_name: worker
-    command: celery -A celery_app worker --loglevel=info
+    command: celery -A tasks worker --loglevel=info
+    environment:
+      - ENV=dev
+      - SQLALCHEMY_DATABASE_URI=postgresql://postgres:postgres@postgres:5432
+    networks:
+      - scheduler-net
+    depends_on:
+      - postgres
+      - redis
+  beat:
+    build:
+      context: .
+    image: ${DOCKER_HUB_REPO}/scheduler-be:${DOCKER_TAG}
+    container_name: beat
+    command: celery -A tasks beat --loglevel=info
     environment:
       - ENV=dev
       - SQLALCHEMY_DATABASE_URI=postgresql://postgres:postgres@postgres:5432
