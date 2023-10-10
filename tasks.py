@@ -1,4 +1,4 @@
-from celery import app
+from celery_app import app
 
 
 @app.task
@@ -15,3 +15,4 @@ def mul_t(x, y):
 @app.task
 def xsum_t(numbers):
     return sum(numbers)
+
