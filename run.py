@@ -2,6 +2,7 @@ import logging
 
 from flask import Flask
 from flask_cors import CORS
+from tasks import add_t
 
 
 def create_app():
@@ -33,7 +34,9 @@ def start_flask_server():
 
     @app.route("/add", methods=["GET"])
     def add():
-        return "Scheduling Add\n", 200
+        # Schedule an add task
+        add_t.delay(2, 2)
+        return "Scheduled add task\n", 200
 
     # Start the server
     app.run(host="0.0.0.0", port=8080, debug=False)
